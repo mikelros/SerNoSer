@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CulturillaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Correcta">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdPregunta" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Erronea">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Explicación" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdPregunta" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pregunta">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Pregunta" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descripción" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_Correcta_Pregunta">
+          <End Role="Pregunta" Type="Self.Pregunta" Multiplicity="1" />
+          <End Role="Correcta" Type="Self.Correcta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pregunta">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Correcta">
+              <PropertyRef Name="IdPregunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Erronea_Pregunta">
+          <End Role="Pregunta" Type="Self.Pregunta" Multiplicity="1" />
+          <End Role="Erronea" Type="Self.Erronea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pregunta">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Erronea">
+              <PropertyRef Name="IdPregunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CulturillaModelStoreContainer">
+          <EntitySet Name="Correcta" EntityType="Self.Correcta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Erronea" EntityType="Self.Erronea" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pregunta" EntityType="Self.Pregunta" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Correcta_Pregunta" Association="Self.FK_Correcta_Pregunta">
+            <End Role="Pregunta" EntitySet="Pregunta" />
+            <End Role="Correcta" EntitySet="Correcta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Erronea_Pregunta" Association="Self.FK_Erronea_Pregunta">
+            <End Role="Pregunta" EntitySet="Pregunta" />
+            <End Role="Erronea" EntitySet="Erronea" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CulturillaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Correcta">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdPregunta" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pregunta" Relationship="Self.FK_Correcta_Pregunta" FromRole="Correcta" ToRole="Pregunta" />
+        </EntityType>
+        <EntityType Name="Erronea">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Explicación" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdPregunta" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pregunta" Relationship="Self.FK_Erronea_Pregunta" FromRole="Erronea" ToRole="Pregunta" />
+        </EntityType>
+        <EntityType Name="Pregunta">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Pregunta1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Descripción" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Correctas" Relationship="Self.FK_Correcta_Pregunta" FromRole="Pregunta" ToRole="Correcta" />
+          <NavigationProperty Name="Erroneas" Relationship="Self.FK_Erronea_Pregunta" FromRole="Pregunta" ToRole="Erronea" />
+        </EntityType>
+        <Association Name="FK_Correcta_Pregunta">
+          <End Role="Pregunta" Type="Self.Pregunta" Multiplicity="1" />
+          <End Role="Correcta" Type="Self.Correcta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pregunta">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Correcta">
+              <PropertyRef Name="IdPregunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Erronea_Pregunta">
+          <End Role="Pregunta" Type="Self.Pregunta" Multiplicity="1" />
+          <End Role="Erronea" Type="Self.Erronea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pregunta">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Erronea">
+              <PropertyRef Name="IdPregunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CulturillaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Correctas" EntityType="Self.Correcta" />
+          <EntitySet Name="Erroneas" EntityType="Self.Erronea" />
+          <EntitySet Name="Preguntas" EntityType="Self.Pregunta" />
+          <AssociationSet Name="FK_Correcta_Pregunta" Association="Self.FK_Correcta_Pregunta">
+            <End Role="Pregunta" EntitySet="Preguntas" />
+            <End Role="Correcta" EntitySet="Correctas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Erronea_Pregunta" Association="Self.FK_Erronea_Pregunta">
+            <End Role="Pregunta" EntitySet="Preguntas" />
+            <End Role="Erronea" EntitySet="Erroneas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CulturillaModelStoreContainer" CdmEntityContainer="CulturillaEntities">
+          <EntitySetMapping Name="Correctas">
+            <EntityTypeMapping TypeName="CulturillaModel.Correcta">
+              <MappingFragment StoreEntitySet="Correcta">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdPregunta" ColumnName="IdPregunta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Erroneas">
+            <EntityTypeMapping TypeName="CulturillaModel.Erronea">
+              <MappingFragment StoreEntitySet="Erronea">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Explicación" ColumnName="Explicación" />
+                <ScalarProperty Name="IdPregunta" ColumnName="IdPregunta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Preguntas">
+            <EntityTypeMapping TypeName="CulturillaModel.Pregunta">
+              <MappingFragment StoreEntitySet="Pregunta">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Pregunta1" ColumnName="Pregunta" />
+                <ScalarProperty Name="Descripción" ColumnName="Descripción" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
