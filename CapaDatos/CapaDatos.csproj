@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database.cs" />
     <Compile Include="ModeloCulturilla.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

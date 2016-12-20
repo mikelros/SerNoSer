@@ -21,7 +21,6 @@ namespace Entidades
         }
     
         public int ID { get; set; }
-        public string Pregunta1 { get; set; }
         public string Descripción { get; set; }
     
         public virtual ICollection<Correcta> Correctas { get; set; }
