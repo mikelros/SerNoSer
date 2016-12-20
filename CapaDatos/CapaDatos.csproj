@@ -62,24 +62,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="ModeloCulturilla.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ModeloCulturilla.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
     <None Include="ModeloCulturilla.edmx.diagram">
       <DependentUpon>ModeloCulturilla.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ModeloCulturilla.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModeloCulturilla.edmx</DependentUpon>
-      <LastGenOutput>ModeloCulturilla.Context.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -89,6 +80,18 @@
       <Project>{0c67eb6d-bdfd-49ee-b9f3-80d40ad463a9}</Project>
       <Name>Entidades</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ModeloCulturilla.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModeloCulturilla.edmx</DependentUpon>
+      <LastGenOutput>ModeloCulturilla.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ModeloCulturilla.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModeloCulturilla.edmx</DependentUpon>
+      <LastGenOutput>ModeloCulturilla.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -27,8 +27,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="Pregunta" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Descripción" Type="nvarchar" MaxLength="100" />
+          <Property Name="Descripción" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_Correcta_Pregunta">
           <End Role="Pregunta" Type="Self.Pregunta" Multiplicity="1" />
@@ -96,8 +95,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Pregunta1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Descripción" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Descripción" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Correctas" Relationship="Self.FK_Correcta_Pregunta" FromRole="Pregunta" ToRole="Correcta" />
           <NavigationProperty Name="Erroneas" Relationship="Self.FK_Erronea_Pregunta" FromRole="Pregunta" ToRole="Erronea" />
         </EntityType>
@@ -167,7 +165,6 @@
             <EntityTypeMapping TypeName="CulturillaModel.Pregunta">
               <MappingFragment StoreEntitySet="Pregunta">
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Pregunta1" ColumnName="Pregunta" />
                 <ScalarProperty Name="Descripción" ColumnName="Descripción" />
               </MappingFragment>
             </EntityTypeMapping>

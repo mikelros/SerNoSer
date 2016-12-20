@@ -27,9 +27,14 @@ namespace CapaPresentacion
             preg.ID = 1;
             Respuestas respuestas = miNegocio.GetRespuestasFrom(preg);
 
-            for (int i = 0; i < gboPreguntas.Controls.Count; i++)
+            for (int i = 0; i < respuestas.Correctas.Count; i++)
             {
-                gboPreguntas.Controls[i].Text = respuestas.Correctas[i] != null ? respuestas.Correctas[i].Descripcion : respuestas.Erroneas[i].Descripcion;
+                gboPreguntas.Controls[i].Text = respuestas.Correctas[i].Descripcion;
+            }
+
+            for (int i = 0; i < respuestas.Erroneas.Count; i++)
+            {
+                gboPreguntas.Controls[i + respuestas.Correctas.Count].Text = respuestas.Erroneas[i].Descripcion;
             }
 
         }
