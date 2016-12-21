@@ -32,10 +32,12 @@ namespace CapaPresentacion
             for (int i = 0; i < respuestas.Correctas.Count; i++)
             {
                 gboPreguntas.Controls[i].Text = respuestas.Correctas[i].Descripcion;
+                gboPreguntas.Controls[i].BackColor = Color.LightGray;
             }
             for (int i = 0; i < respuestas.Erroneas.Count; i++)
             {
                 gboPreguntas.Controls[i + respuestas.Correctas.Count].Text = respuestas.Erroneas[i].Descripcion;
+                gboPreguntas.Controls[i].BackColor = Color.LightGray;
             }
         }
 
