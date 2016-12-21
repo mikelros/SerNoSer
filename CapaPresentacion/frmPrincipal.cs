@@ -15,34 +15,34 @@ namespace CapaPresentacion
     public partial class frmPrincipal : Form
     {
         private static Negocio miNegocio = new Negocio();
+        private Pregunta preg;
         public frmPrincipal()
         {
             InitializeComponent();
         }
 
-        private void frmPrincipal_Load(object sender, EventArgs e)
+        private void siguientePregunta()
         {
-            miNegocio.GetPreguntas();
-            //super hardcoded
-            //Tenemos que cargar la pregunta inicial (cuando david cree la función)
-            Pregunta preg = miNegocio.GetPregunta();
-
-            //Temporal para pruebas
-            preg.ID = 1;
-
+            preg = miNegocio.GetPregunta();
             lblPregunta.Text = preg.Descripción;
 
             Respuestas respuestas = miNegocio.GetRespuestasFrom(preg);
 
+            //más super hardcodeo
             for (int i = 0; i < respuestas.Correctas.Count; i++)
             {
                 gboPreguntas.Controls[i].Text = respuestas.Correctas[i].Descripcion;
             }
-
             for (int i = 0; i < respuestas.Erroneas.Count; i++)
             {
                 gboPreguntas.Controls[i + respuestas.Correctas.Count].Text = respuestas.Erroneas[i].Descripcion;
             }
+        }
+
+        private void frmPrincipal_Load(object sender, EventArgs e)
+        {
+            miNegocio.GetPreguntas();
+            siguientePregunta();
 
         }
 
@@ -51,6 +51,9 @@ namespace CapaPresentacion
             this.Close();
         }
 
-        
+        private void btnPasar_Click(object sender, EventArgs e)
+        {
+            siguientePregunta();
+        }
     }
 }
