@@ -199,7 +199,7 @@
             this.lblPuntos.Name = "lblPuntos";
             this.lblPuntos.Size = new System.Drawing.Size(115, 78);
             this.lblPuntos.TabIndex = 15;
-            this.lblPuntos.Text = "Num";
+            this.lblPuntos.Text = "0";
             this.lblPuntos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblPregunta

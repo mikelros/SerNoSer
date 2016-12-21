@@ -10,6 +10,7 @@ namespace CapaDatos
     public class Database
     {
         private CulturillaEntities context = new CulturillaEntities();
+        private Random rdn = new Random();
 
         public Respuestas GetRespuestasFrom(Pregunta pregunta)
         {
@@ -19,6 +20,12 @@ namespace CapaDatos
             respuestas.Correctas = context.Correctas.Where((e) => e.IdPregunta == pregunta.ID).ToList();
 
             return respuestas;
+        }
+
+        //De momento sacando el numero aleatorio de pregunta
+        public int GetNumPreguntas()
+        {
+            return rdn.Next(1, context.Preguntas.Count());
         }
     }
 }

@@ -16,5 +16,6 @@ namespace CapaNegocio
         {
             return misDatos.GetRespuestasFrom(pregunta);
         }
+        
     }
 }
