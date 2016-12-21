@@ -20,11 +20,8 @@ namespace CapaPresentacion
             InitializeComponent();
         }
 
-        private void frmPrincipal_Load(object sender, EventArgs e)
+        private void nuevaPregunta()
         {
-            miNegocio.GetPreguntas();
-            //super hardcoded
-            //Tenemos que cargar la pregunta inicial (cuando david cree la función)
             Pregunta preg = miNegocio.GetPregunta();
 
             //Temporal para pruebas
@@ -35,8 +32,14 @@ namespace CapaPresentacion
             for (int i = 0; i < respuestas.Count; i++)
             {
                 gboPreguntas.Controls[i].Text = respuestas[i].Descripcion;
+                gboPreguntas.Controls[i].BackColor = Color.LightGray;
             }
-            
+        }
+
+        private void frmPrincipal_Load(object sender, EventArgs e)
+        {
+            miNegocio.GetPreguntas();
+            nuevaPregunta();
 
         }
 
@@ -45,6 +48,9 @@ namespace CapaPresentacion
             this.Close();
         }
 
-        
+        private void btnPasar_Click(object sender, EventArgs e)
+        {
+            nuevaPregunta();
+        }
     }
 }
