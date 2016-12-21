@@ -12,7 +12,7 @@ namespace CapaNegocio
     {
         private Database misDatos = new Database();
 
-        public Respuestas GetRespuestasFrom(Pregunta pregunta)
+        public List<Respuesta> GetRespuestasFrom(Pregunta pregunta)
         {
             return misDatos.GetRespuestasFrom(pregunta);
         }

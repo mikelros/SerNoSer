@@ -54,6 +54,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModeloCulturilla.Context.tt</DependentUpon>
     </Compile>
+    <Compile Include="ModeloCulturilla.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloCulturilla.tt</DependentUpon>
+    </Compile>
     <Compile Include="ModeloCulturilla.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -82,6 +87,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Culturilla.sql" />
     <Content Include="ModeloCulturilla.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModeloCulturilla.edmx</DependentUpon>

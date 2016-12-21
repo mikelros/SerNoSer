@@ -13,12 +13,13 @@ namespace CapaDatos
         private Random rdn = new Random();
         private List<Pregunta> preguntas;
 
-        public Respuestas GetRespuestasFrom(Pregunta pregunta)
+        public List<Respuesta> GetRespuestasFrom(Pregunta pregunta)
         {
-            Respuestas respuestas = new Respuestas();
+            List<Respuesta> respuestas = new List<Respuesta>();
 
-            respuestas.Erroneas = context.Erroneas.Where((e)=>e.IdPregunta == pregunta.ID).ToList();
-            respuestas.Correctas = context.Correctas.Where((e) => e.IdPregunta == pregunta.ID).ToList();
+            respuestas = context.Respuestas.Where((e)=>e.IdPregunta == pregunta.Id).ToList();
+
+            respuestas.Sort((p1, p2) => p1.Descripcion.CompareTo(p2.Descripcion));
 
             return respuestas;
         }
@@ -26,16 +27,15 @@ namespace CapaDatos
         //Recuperamos todas las preguntas
         public void GetPreguntas()
         {
-            preguntas = (from p in context.Preguntas
-                         select p).ToList();
+            preguntas = context.Preguntas.ToList();
         }
 
         //Seleccionamos una pregunta aleatoria de nuestra lista y la eliminamos
         public Pregunta GetPregunta()
         {
-            if (preguntas.Count() == 0)
+            if (preguntas.Count() != 0)
             {
-                int num = rdn.Next(1, preguntas.Count());
+                int num = rdn.Next(0, preguntas.Count());
                 Pregunta preg = preguntas[num];
 
                 preguntas.RemoveAt(num);
