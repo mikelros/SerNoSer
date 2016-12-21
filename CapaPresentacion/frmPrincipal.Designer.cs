@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.btnFin = new System.Windows.Forms.Button();
-            this.btnPasar = new System.Windows.Forms.Button();
             this.btn1 = new System.Windows.Forms.Button();
             this.btn2 = new System.Windows.Forms.Button();
             this.btn4 = new System.Windows.Forms.Button();
@@ -47,6 +46,7 @@
             this.lblPregunta = new System.Windows.Forms.Label();
             this.lblError = new System.Windows.Forms.Label();
             this.gboPreguntas = new System.Windows.Forms.GroupBox();
+            this.btnPasar = new System.Windows.Forms.Button();
             this.gboPreguntas.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,17 +61,6 @@
             this.btnFin.Text = "&Fin programa";
             this.btnFin.UseVisualStyleBackColor = true;
             this.btnFin.Click += new System.EventHandler(this.btnFin_Click);
-            // 
-            // btnPasar
-            // 
-            this.btnPasar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPasar.Location = new System.Drawing.Point(971, 21);
-            this.btnPasar.Name = "btnPasar";
-            this.btnPasar.Size = new System.Drawing.Size(174, 109);
-            this.btnPasar.TabIndex = 1;
-            this.btnPasar.Text = "&Pasar";
-            this.btnPasar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnPasar.UseVisualStyleBackColor = true;
             // 
             // btn1
             // 
@@ -243,6 +232,19 @@
             this.gboPreguntas.TabIndex = 18;
             this.gboPreguntas.TabStop = false;
             this.gboPreguntas.Text = "Respuestas";
+            // 
+            // btnPasar
+            // 
+            this.btnPasar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPasar.Image = global::CapaPresentacion.Properties.Resources.stop1;
+            this.btnPasar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnPasar.Location = new System.Drawing.Point(971, 35);
+            this.btnPasar.Name = "btnPasar";
+            this.btnPasar.Size = new System.Drawing.Size(174, 78);
+            this.btnPasar.TabIndex = 1;
+            this.btnPasar.Text = "&Pasar";
+            this.btnPasar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnPasar.UseVisualStyleBackColor = true;
             // 
             // frmPrincipal
             // 
