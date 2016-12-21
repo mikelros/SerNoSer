@@ -245,7 +245,6 @@
             this.btnPasar.Text = "&Pasar";
             this.btnPasar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnPasar.UseVisualStyleBackColor = true;
-            this.btnPasar.Click += new System.EventHandler(this.btnPasar_Click);
             // 
             // frmPrincipal
             // 
