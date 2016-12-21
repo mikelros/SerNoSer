@@ -27,7 +27,7 @@ namespace CapaDatos
         public void GetPreguntas()
         {
             preguntas = (from p in context.Preguntas
-                         select p).ToList<Pregunta>();
+                         select p).ToList();
         }
 
         //Seleccionamos una pregunta aleatoria de nuestra lista y la eliminamos

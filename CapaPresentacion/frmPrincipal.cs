@@ -22,14 +22,13 @@ namespace CapaPresentacion
 
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
+            miNegocio.GetPreguntas();
             //super hardcoded
             //Tenemos que cargar la pregunta inicial (cuando david cree la función)
-            Pregunta preg = new Pregunta();
-            //preg = devolverPreg();
+            Pregunta preg = miNegocio.GetPregunta();
 
             //Temporal para pruebas
             preg.ID = 1;
-            preg.Descripción = "Holi, soy una pregunta?";
 
             lblPregunta.Text = preg.Descripción;
 

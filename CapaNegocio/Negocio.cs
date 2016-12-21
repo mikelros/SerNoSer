@@ -16,6 +16,16 @@ namespace CapaNegocio
         {
             return misDatos.GetRespuestasFrom(pregunta);
         }
+
+        public Pregunta GetPregunta()
+        {
+            return misDatos.GetPregunta();
+        }
+
+        public void GetPreguntas()
+        {
+            misDatos.GetPreguntas();
+        }
         
     }
 }
