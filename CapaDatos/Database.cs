@@ -33,11 +33,16 @@ namespace CapaDatos
         //Seleccionamos una pregunta aleatoria de nuestra lista y la eliminamos
         public Pregunta GetPregunta()
         {
-            int num = rdn.Next(1, preguntas.Count());
-            Pregunta preg = preguntas[num];
+            if (preguntas.Count() == 0)
+            {
+                int num = rdn.Next(1, preguntas.Count());
+                Pregunta preg = preguntas[num];
 
-            preguntas.RemoveAt(num);
-            return preg;
+                preguntas.RemoveAt(num);
+                return preg;
+            }
+
+            return null;
         }
     }
 }
