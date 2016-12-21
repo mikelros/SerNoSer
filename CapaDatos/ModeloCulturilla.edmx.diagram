@@ -4,12 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="21fdc16db90442b583a9d193c351f023" Name="Diagram1">
-        <EntityTypeShape EntityType="CulturillaModel.Correcta" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="CulturillaModel.Erronea" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="CulturillaModel.Pregunta" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
-        <AssociationConnector Association="CulturillaModel.FK_Correcta_Pregunta" ManuallyRouted="false" />
-        <AssociationConnector Association="CulturillaModel.FK_Erronea_Pregunta" ManuallyRouted="false" />
+      <Diagram DiagramId="6f501fba6bab41ffa43f6af29b7b18b3" Name="Diagram1">
+        <EntityTypeShape EntityType="CulturillaModel.Pregunta" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CulturillaModel.Respuesta" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="CulturillaModel.FK_Respuesta_Pregunta1" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

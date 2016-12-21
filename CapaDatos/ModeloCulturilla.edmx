@@ -5,65 +5,40 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="CulturillaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Correcta">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="Descripcion" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="IdPregunta" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Erronea">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="Descripcion" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="Explicación" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="IdPregunta" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="Pregunta">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="Descripción" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Correcta_Pregunta">
+        <EntityType Name="Respuesta">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Explicacion" Type="nvarchar" MaxLength="100" />
+          <Property Name="IdPregunta" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Respuesta_Pregunta1">
           <End Role="Pregunta" Type="Self.Pregunta" Multiplicity="1" />
-          <End Role="Correcta" Type="Self.Correcta" Multiplicity="*" />
+          <End Role="Respuesta" Type="Self.Respuesta" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Pregunta">
-              <PropertyRef Name="ID" />
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Correcta">
-              <PropertyRef Name="IdPregunta" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Erronea_Pregunta">
-          <End Role="Pregunta" Type="Self.Pregunta" Multiplicity="1" />
-          <End Role="Erronea" Type="Self.Erronea" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Pregunta">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Erronea">
+            <Dependent Role="Respuesta">
               <PropertyRef Name="IdPregunta" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="CulturillaModelStoreContainer">
-          <EntitySet Name="Correcta" EntityType="Self.Correcta" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Erronea" EntityType="Self.Erronea" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pregunta" EntityType="Self.Pregunta" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Correcta_Pregunta" Association="Self.FK_Correcta_Pregunta">
+          <EntitySet Name="Respuesta" EntityType="Self.Respuesta" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Respuesta_Pregunta1" Association="Self.FK_Respuesta_Pregunta1">
             <End Role="Pregunta" EntitySet="Pregunta" />
-            <End Role="Correcta" EntitySet="Correcta" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Erronea_Pregunta" Association="Self.FK_Erronea_Pregunta">
-            <End Role="Pregunta" EntitySet="Pregunta" />
-            <End Role="Erronea" EntitySet="Erronea" />
+            <End Role="Respuesta" EntitySet="Respuesta" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -71,69 +46,42 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CulturillaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Correcta">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="IdPregunta" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Pregunta" Relationship="Self.FK_Correcta_Pregunta" FromRole="Correcta" ToRole="Pregunta" />
-        </EntityType>
-        <EntityType Name="Erronea">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Explicación" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="IdPregunta" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Pregunta" Relationship="Self.FK_Erronea_Pregunta" FromRole="Erronea" ToRole="Pregunta" />
-        </EntityType>
         <EntityType Name="Pregunta">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Descripción" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Correctas" Relationship="Self.FK_Correcta_Pregunta" FromRole="Pregunta" ToRole="Correcta" />
-          <NavigationProperty Name="Erroneas" Relationship="Self.FK_Erronea_Pregunta" FromRole="Pregunta" ToRole="Erronea" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Respuestas" Relationship="Self.FK_Respuesta_Pregunta1" FromRole="Pregunta" ToRole="Respuesta" />
         </EntityType>
-        <Association Name="FK_Correcta_Pregunta">
+        <EntityType Name="Respuesta">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Explicacion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IdPregunta" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pregunta" Relationship="Self.FK_Respuesta_Pregunta1" FromRole="Respuesta" ToRole="Pregunta" />
+        </EntityType>
+        <Association Name="FK_Respuesta_Pregunta1">
           <End Role="Pregunta" Type="Self.Pregunta" Multiplicity="1" />
-          <End Role="Correcta" Type="Self.Correcta" Multiplicity="*" />
+          <End Role="Respuesta" Type="Self.Respuesta" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Pregunta">
-              <PropertyRef Name="ID" />
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Correcta">
+            <Dependent Role="Respuesta">
               <PropertyRef Name="IdPregunta" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Erronea_Pregunta">
-          <End Role="Pregunta" Type="Self.Pregunta" Multiplicity="1" />
-          <End Role="Erronea" Type="Self.Erronea" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Pregunta">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Erronea">
-              <PropertyRef Name="IdPregunta" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="CulturillaEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Correctas" EntityType="Self.Correcta" />
-          <EntitySet Name="Erroneas" EntityType="Self.Erronea" />
+        <EntityContainer Name="CulturillaEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Preguntas" EntityType="Self.Pregunta" />
-          <AssociationSet Name="FK_Correcta_Pregunta" Association="Self.FK_Correcta_Pregunta">
+          <EntitySet Name="Respuestas" EntityType="Self.Respuesta" />
+          <AssociationSet Name="FK_Respuesta_Pregunta1" Association="Self.FK_Respuesta_Pregunta1">
             <End Role="Pregunta" EntitySet="Preguntas" />
-            <End Role="Correcta" EntitySet="Correctas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Erronea_Pregunta" Association="Self.FK_Erronea_Pregunta">
-            <End Role="Pregunta" EntitySet="Preguntas" />
-            <End Role="Erronea" EntitySet="Erroneas" />
+            <End Role="Respuesta" EntitySet="Respuestas" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -141,31 +89,22 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CulturillaModelStoreContainer" CdmEntityContainer="CulturillaEntities">
-          <EntitySetMapping Name="Correctas">
-            <EntityTypeMapping TypeName="CulturillaModel.Correcta">
-              <MappingFragment StoreEntitySet="Correcta">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="IdPregunta" ColumnName="IdPregunta" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Erroneas">
-            <EntityTypeMapping TypeName="CulturillaModel.Erronea">
-              <MappingFragment StoreEntitySet="Erronea">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Explicación" ColumnName="Explicación" />
-                <ScalarProperty Name="IdPregunta" ColumnName="IdPregunta" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+        <EntityContainerMapping StorageEntityContainer="CulturillaModelStoreContainer" CdmEntityContainer="CulturillaEntities1">
           <EntitySetMapping Name="Preguntas">
             <EntityTypeMapping TypeName="CulturillaModel.Pregunta">
               <MappingFragment StoreEntitySet="Pregunta">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Descripción" ColumnName="Descripción" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Respuestas">
+            <EntityTypeMapping TypeName="CulturillaModel.Respuesta">
+              <MappingFragment StoreEntitySet="Respuesta">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Explicacion" ColumnName="Explicacion" />
+                <ScalarProperty Name="IdPregunta" ColumnName="IdPregunta" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -186,7 +125,7 @@
         <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="true" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
