@@ -236,7 +236,7 @@
             // btnPasar
             // 
             this.btnPasar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPasar.Image = global::CapaPresentacion.Properties.Resources.stop1;
+            this.btnPasar.Image = global::CapaPresentacion.Properties.Resources.stop;
             this.btnPasar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnPasar.Location = new System.Drawing.Point(971, 35);
             this.btnPasar.Name = "btnPasar";
