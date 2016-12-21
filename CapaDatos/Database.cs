@@ -11,6 +11,7 @@ namespace CapaDatos
     {
         private CulturillaEntities context = new CulturillaEntities();
         private Random rdn = new Random();
+        private List<Pregunta> preguntas;
 
         public Respuestas GetRespuestasFrom(Pregunta pregunta)
         {
@@ -21,11 +22,22 @@ namespace CapaDatos
 
             return respuestas;
         }
-
-        //De momento sacando el numero aleatorio de pregunta
-        public int GetNumPreguntas()
+            
+        //Recuperamos todas las preguntas
+        public void GetPreguntas()
         {
-            return rdn.Next(1, context.Preguntas.Count());
+            preguntas = (from p in context.Preguntas
+                         select p).ToList<Pregunta>();
+        }
+
+        //Seleccionamos una pregunta aleatoria de nuestra lista y la eliminamos
+        public Pregunta GetPregunta()
+        {
+            int num = rdn.Next(1, preguntas.Count());
+            Pregunta preg = preguntas[num];
+
+            preguntas.RemoveAt(num);
+            return preg;
         }
     }
 }
