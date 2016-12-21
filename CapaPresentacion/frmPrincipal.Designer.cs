@@ -242,7 +242,7 @@
             this.gboPreguntas.Size = new System.Drawing.Size(1094, 431);
             this.gboPreguntas.TabIndex = 18;
             this.gboPreguntas.TabStop = false;
-            this.gboPreguntas.Text = "Preguntas";
+            this.gboPreguntas.Text = "Respuestas";
             // 
             // frmPrincipal
             // 
