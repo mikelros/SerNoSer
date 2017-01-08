@@ -18,6 +18,11 @@ namespace Entidades
         public string Descripcion { get; set; }
         public string Explicacion { get; set; }
         public int IdPregunta { get; set; }
+
+        public bool esCorrecta()
+        {
+            return String.IsNullOrEmpty(Explicacion);
+        }
     
         public virtual Pregunta Pregunta { get; set; }
     }
