@@ -39,6 +39,7 @@ namespace CapaPresentacion
             this.btn12.Click += new System.EventHandler(this.comprobarRespuesta);
 
             fallos = 0;
+            aciertos = 0;
             puntos = 0;
 
             preguntas = miNegocio.GetPreguntas();
@@ -49,8 +50,15 @@ namespace CapaPresentacion
         private void cargarPregunta()
         {
             lblError.Text = "";
+            aciertos = 0;
+            fallos = 0;
             Pregunta preg = null;
-            if (preguntas.Count() != 0)
+
+            if (preguntas == null)
+            {
+                MessageBox.Show("No hay conexión con la base de datos", "Ups", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            } else if (preguntas.Count() != 0)
             {
                 Random rdn = new Random();
                 int num = rdn.Next(0, preguntas.Count());

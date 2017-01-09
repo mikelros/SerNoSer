@@ -13,18 +13,31 @@ namespace CapaDatos
 
         public List<Respuesta> GetRespuestasFrom(Pregunta pregunta)
         {
-            List<Respuesta> respuestas = new List<Respuesta>();
+            try
+            {
+                List<Respuesta> respuestas = new List<Respuesta>();
 
-            respuestas = context.Respuestas.Where((e)=>e.IdPregunta == pregunta.Id).ToList();
+                respuestas = context.Respuestas.Where((e) => e.IdPregunta == pregunta.Id).ToList();
 
-            respuestas.Sort((p1, p2) => p1.Descripcion.CompareTo(p2.Descripcion));
+                respuestas.Sort((p1, p2) => p1.Descripcion.CompareTo(p2.Descripcion));
 
-            return respuestas;
+                return respuestas;
+            } catch (Exception ex) {
+                return null;
+            }
+            
         }
             
         public List<Pregunta> GetPreguntas()
         {
-            return context.Preguntas.ToList();
+            try
+            {
+                return context.Preguntas.ToList();
+            } catch (Exception ex) //Ros, marron aqui
+            {
+                return null;
+            }
+            
         }
 
     }
