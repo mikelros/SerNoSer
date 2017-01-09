@@ -48,6 +48,7 @@ namespace CapaPresentacion
 
         private void cargarPregunta()
         {
+            lblError.Text = "";
             Pregunta preg = null;
             if (preguntas.Count() != 0)
             {
@@ -111,6 +112,8 @@ namespace CapaPresentacion
             btn.BackColor = Color.Red;
             fallos++;
             puntos /= 2;
+            Respuesta resp = btn.Tag as Respuesta;
+            lblError.Text = resp.Explicacion;
             if (fallos == 4)
             {
                 MessageBox.Show("Ya has fallado todas las posibles respuestas erróneas.", "Lo siento", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -124,7 +127,7 @@ namespace CapaPresentacion
             btn.BackColor = Color.Green;
             aciertos++;
             puntos = puntos == 0 ? 5 : puntos * 2;
-
+            lblError.Text = "";
             if (aciertos == 8)
             {
                 MessageBox.Show("Ya has acertado todas las respuestas.", "Enhorabuena", MessageBoxButtons.OK, MessageBoxIcon.Information);

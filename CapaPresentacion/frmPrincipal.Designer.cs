@@ -209,7 +209,6 @@
             this.lblError.Name = "lblError";
             this.lblError.Size = new System.Drawing.Size(1094, 51);
             this.lblError.TabIndex = 17;
-            this.lblError.Text = "Error";
             this.lblError.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // gboPreguntas
