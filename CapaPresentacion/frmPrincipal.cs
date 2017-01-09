@@ -83,7 +83,11 @@ namespace CapaPresentacion
                 
             } else
             {
-                MessageBox.Show("Ya no hay más preguntas.", "ATENCIÓN", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                for (int i = 0; i < gboPreguntas.Controls.Count; i++)
+                {
+                    gboPreguntas.Controls[i].Enabled = false;
+                }
+                    MessageBox.Show("Ya no hay más preguntas.", "ATENCIÓN", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
         }
