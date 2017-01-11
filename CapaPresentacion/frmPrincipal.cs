@@ -72,8 +72,9 @@ namespace CapaPresentacion
 
                 if (respuestas.Count != 0)
                 {
-                    for (int i = 0; i < respuestas.Count; i++)
+                    for (int i = 0; i < gboPreguntas.Controls.Count; i++)
                     {
+                        gboPreguntas.Controls[i].Enabled = true;
                         gboPreguntas.Controls[i].Tag = respuestas[i];
                         gboPreguntas.Controls[i].Text = respuestas[i].Descripcion;
                         gboPreguntas.Controls[i].BackColor = Color.LightGray;
@@ -82,7 +83,7 @@ namespace CapaPresentacion
                 {
                     for (int i = 0; i < gboPreguntas.Controls.Count; i++)
                     {
-                        gboPreguntas.Controls[i].Enabled = true;
+                        gboPreguntas.Controls[i].Enabled = false;
                         gboPreguntas.Controls[i].Text = "";
                         gboPreguntas.Controls[i].Tag = null;
                         gboPreguntas.Controls[i].BackColor = Color.LightGray;
@@ -107,14 +108,14 @@ namespace CapaPresentacion
 
             if (resp != null)
             {
+                btn.Enabled = false;
+                lblPuntos.Text = puntos.ToString();
+
                 if (resp.esCorrecta()) {
                     acierta(btn);
                 } else {
                     falla(btn);
                 }
-
-                btn.Enabled = false;
-                lblPuntos.Text = puntos.ToString();
 
             }
         }
